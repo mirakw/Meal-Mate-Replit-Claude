@@ -1,0 +1,454 @@
+/* CSS Variables */
+:root {
+    --mm-primary: #0ea5a5;
+    --mm-primary-2: #4f46e5;
+    --primary-gradient: linear-gradient(135deg, var(--mm-primary) 0%, var(--mm-primary-2) 100%);
+    --secondary-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    --accent-color: var(--mm-primary);
+    --text-primary: #1a202c;
+    --text-secondary: #718096;
+    --surface-white: #ffffff;
+    --surface-light: #f7fafc;
+    --surface-gray: #edf2f7;
+    --border-light: #e2e8f0;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+    --border-radius-sm: 0.375rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 0.75rem;
+    --border-radius-xl: 1rem;
+    --pastel-orange: #FFB366;
+    --pastel-blue: #6BB7FF;
+    --pastel-green: #7ED321;
+    --pastel-teal: #50E3C2;
+}
+
+/* Safe areas for iOS */
+.mm-safe {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--surface-light);
+    color: var(--text-primary);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keep navbar compact on mobile */
+.navbar.mm-nav {
+    min-height: 56px;
+    background: var(--primary-gradient) !important;
+    border: none !important;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    z-index: 1050;
+}
+
+.navbar.mm-nav .navbar-brand {
+    color: white !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.navbar.mm-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500;
+}
+
+.navbar.mm-nav .navbar-toggler {
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.navbar.mm-nav .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Main content spacing to avoid navbar overlap */
+.main-content {
+    padding-top: calc(env(safe-area-inset-top) + 4.5rem);
+    min-height: calc(100vh - 100px);
+}
+
+/* Card padding tuned for mobile */
+.card.mm-card .card-body { 
+    padding: 1rem; 
+}
+
+@media (min-width: 768px){
+    .card.mm-card .card-body { 
+        padding: 1.25rem 1.5rem; 
+    }
+}
+
+/* Cards */
+.card {
+    background: var(--surface-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.mm-card {
+    border: none;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.mm-card .card-body {
+    padding: 1rem;
+    overflow: hidden;
+}
+
+/* Fix button spacing in cards */
+.mm-card .btn {
+    margin-bottom: 0.5rem;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.mm-card .d-flex.gap-2 {
+    flex-wrap: wrap;
+    gap: 0.5rem !important;
+}
+
+/* Ensure buttons don't overflow on small screens */
+@media (max-width: 576px) {
+    .mm-card .d-flex.gap-2 .btn {
+        flex: 1;
+        min-width: 0;
+        font-size: 0.875rem;
+    }
+    
+    .mm-card .btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background: var(--secondary-gradient);
+    border-bottom: 1px solid var(--border-light);
+    padding: 1.5rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Buttons with reliable tap size */
+.btn.mm-btn {
+    min-height: 48px;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+    justify-content: center;
+}
+
+.btn.mm-btn-primary {
+    color: #fff;
+    background: linear-gradient(90deg, var(--mm-primary), var(--mm-primary-2));
+    border: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn.mm-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    color: white;
+}
+
+.btn.mm-btn-secondary {
+    background: #fff;
+    color: var(--mm-primary);
+    border: 2px solid var(--mm-primary);
+}
+
+.btn.mm-btn-secondary:hover {
+    background: var(--mm-primary);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Input group: bigger touch affordance */
+.mm-input .form-control { 
+    padding: 0.875rem 0.875rem; 
+    font-size: 1rem; 
+    border: 2px solid var(--border-light);
+    border-radius: var(--border-radius-lg);
+    transition: all 0.2s ease;
+}
+
+.mm-input .form-control:focus {
+    border-color: var(--mm-primary);
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 165, 0.25);
+}
+
+.mm-input .btn { 
+    min-height: 44px; 
+    border-radius: var(--border-radius-lg);
+}
+
+/* Simple tile item */
+.mm-tile {
+    display: flex; 
+    align-items: center; 
+    gap: .75rem;
+    padding: 1rem; 
+    border: 1px solid #e5e7eb; 
+    border-radius: .75rem; 
+    background: #fff;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.mm-tile:hover {
+    background: var(--surface-light);
+    border-color: var(--mm-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.mm-icon {
+    width: 28px; 
+    height: 28px; 
+    border-radius: .5rem;
+    display: grid; 
+    place-items: center; 
+    background: rgba(14,165,165,.15); 
+    color: var(--mm-primary);
+    font-size: 1rem;
+}
+
+/* Text styles */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+}
+
+.text-gradient {
+    background: var(--primary-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 2.75rem;
+    letter-spacing: -0.05em;
+    line-height: 1.2;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: calc(env(safe-area-inset-top) + 3.5rem) !important;
+    }
+    
+    .btn.mm-btn {
+        font-size: 0.95rem !important;
+        padding: 1rem 1.5rem !important;
+        font-weight: 600 !important;
+        min-height: 52px;
+    }
+    
+    .btn-sm {
+        font-size: 0.85rem !important;
+        padding: 0.75rem 1.25rem !important;
+        min-height: 44px;
+    }
+    
+    .card-title {
+        font-size: 1.2rem !important;
+        font-weight: 700 !important;
+    }
+    
+    .text-gradient {
+        font-size: 2rem !important;
+        font-weight: 800 !important;
+    }
+    
+    .card-text {
+        font-size: 0.95rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    .card-header h3, .card-header h5 {
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+    }
+    
+    /* Improve form controls for mobile */
+    .form-control {
+        font-size: 16px; /* Prevent zoom on iOS */
+        min-height: 44px;
+    }
+    
+    .form-select {
+        font-size: 16px;
+        min-height: 44px;
+    }
+    
+    /* Modal improvements for mobile */
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+    
+    .modal-content {
+        border-radius: 12px;
+    }
+    
+    .modal-header, .modal-footer {
+        padding: 1rem;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+}
+
+/* Loading states and animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Custom alert styles */
+.alert {
+    border: none;
+    border-radius: var(--border-radius-lg);
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #065F46;
+    border-left: 4px solid var(--success-color);
+}
+
+.alert-danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: #991B1B;
+    border-left: 4px solid var(--danger-color);
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400E;
+    border-left: 4px solid var(--warning-color);
+}
+
+/* Dropdown improvements */
+.dropdown-menu {
+    border: none;
+    box-shadow: var(--shadow-xl);
+    border-radius: var(--border-radius-lg);
+    padding: 0.5rem;
+}
+
+.dropdown-item {
+    border-radius: var(--border-radius-md);
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--surface-gray);
+    transform: translateY(-1px);
+}
+
+/* Login page divider */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.divider-text {
+    padding: 0 1rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
